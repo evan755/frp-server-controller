@@ -45,7 +45,12 @@ class Container
         ]);
     }
 
-    public function enable(string $container_name): bool
+    public function delete(): bool
+    {
+        return (bool)unlink($this->container()) && rmdir(dirname($this->container()));
+    }
+
+    public function start(string $container_name): bool
     {
         $command = sprintf('docker-compose -f %s up -d', $this->container());
         $output = [];
@@ -53,17 +58,12 @@ class Container
         return $result === 0;
     }
 
-    public function disable(): bool
+    public function stop(): bool
     {
         $command = sprintf('docker-compose -f %s down -v', $this->container());
         $output = [];
         exec($command, $output, $result);
         return $result === 0;
-    }
-
-    public function delete(): bool
-    {
-        return (bool)unlink($this->container()) && rmdir(dirname($this->container()));
     }
 
     protected function containers(): string
