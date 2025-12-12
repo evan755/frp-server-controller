@@ -12,6 +12,16 @@ class Container
         print_r($this->container());
     }
 
+    protected function container(): string
+    {
+        return $this->containers() . DIRECTORY_SEPARATOR . $this->name . DIRECTORY_SEPARATOR . 'docker-compose.yml';
+    }
+
+    protected function containers(): string
+    {
+        return dirname(__DIR__, 2) . DIRECTORY_SEPARATOR . 'containers';
+    }
+
     public function create(string $image, string $token, int $main_port, int $web_port, string $web_username, string $web_password): bool
     {
         is_dir(dirname($this->container())) || mkdir(dirname($this->container()), 0755, true);
@@ -72,16 +82,6 @@ class Container
         $output = [];
         exec($command, $output, $result);
         return $result === 0;
-    }
-
-    protected function containers(): string
-    {
-        return dirname(__DIR__, 2) . DIRECTORY_SEPARATOR . 'containers';
-    }
-
-    protected function container(): string
-    {
-        return $this->containers() . DIRECTORY_SEPARATOR . $this->name . DIRECTORY_SEPARATOR . 'docker-compose.yml';
     }
 
 }
