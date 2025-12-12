@@ -66,6 +66,14 @@ class Container
         return $result === 0;
     }
 
+    public function restart(): bool
+    {
+        $command = sprintf('docker-compose -f %s restart', $this->container());
+        $output = [];
+        exec($command, $output, $result);
+        return $result === 0;
+    }
+
     protected function containers(): string
     {
         return dirname(__DIR__, 2) . DIRECTORY_SEPARATOR . 'containers';
