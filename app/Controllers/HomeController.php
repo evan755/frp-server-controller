@@ -10,7 +10,7 @@ class HomeController
     public function index(Request $request, Response $response): void
     {
         $response->setHeader('Content-Type', 'application/json');
-        $response->setbody(json_encode(['message' => 'Welcome to the Home Page!']));
+        $response->setbody(json_encode(['message' => 'Frp Server Controller is working!']));
         $response->send();
     }
 }
