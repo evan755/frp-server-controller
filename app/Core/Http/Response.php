@@ -5,16 +5,8 @@ namespace App\Core\Http;
 class Response
 {
     protected array $headers;
-    protected string $body {
-        set {
-            $this->body = $value;
-        }
-    }
-    protected int $code {
-        set {
-            $this->code = $value;
-        }
-    }
+    protected string $body;
+    protected int $code;
 
     public function __construct()
     {
@@ -26,6 +18,16 @@ class Response
     public function setHeader(string $key, string $value): void
     {
         $this->headers = [$key => $value];
+    }
+
+    public function setCode(int $code): void
+    {
+        $this->code = $code;
+    }
+
+    public function setBody(string $body): void
+    {
+        $this->body = $body;
     }
 
     public function send()

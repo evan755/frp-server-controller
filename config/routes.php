@@ -3,4 +3,4 @@
 use App\Core\Http\Router;
 
 $router = Router::getInstance();
-$router->get('home', ['/', 'HomeController@index']);
+$router->get('default', ['/', 'HomeController@index']);

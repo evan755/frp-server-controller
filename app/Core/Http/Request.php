@@ -4,31 +4,11 @@ namespace App\Core\Http;
 
 class Request
 {
-    protected string $method {
-        get {
-            return $this->method;
-        }
-    }
-    protected string $uri {
-        get {
-            return $this->uri;
-        }
-    }
-    protected array $headers {
-        get {
-            return $this->headers;
-        }
-    }
-    protected string $body {
-        get {
-            return $this->body;
-        }
-    }
-    protected array $query {
-        get {
-            return $this->query;
-        }
-    }
+    protected string $method;
+    protected string $uri;
+    protected array $headers;
+    protected string $body;
+    protected array $query;
 
     public function __construct()
     {
@@ -52,9 +32,34 @@ class Request
         return $headers;
     }
 
+    public function getMethod(): string
+    {
+        return $this->method;
+    }
+
+    public function getUri(): string
+    {
+        return $this->uri;
+    }
+
+    public function getQuery(): array
+    {
+        return $this->query;
+    }
+
+    public function getHeaders(): array
+    {
+        return $this->headers;
+    }
+
     public function getHeader(string $name): ?string
     {
         return $this->headers[strtolower($name)] ?? null;
+    }
+
+    public function getBody(): string
+    {
+        return $this->body;
     }
 
 }
